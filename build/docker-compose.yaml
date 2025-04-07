@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  mongo:
+    image: mongo:5.0.15
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "55555:27017"
+    volumes:
+      - '.private/mongo_data:/var/lib/mongodb'
+
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+
